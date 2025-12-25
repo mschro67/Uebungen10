@@ -96,7 +96,7 @@ public class Grid{
         String string="";
         for (Cell[] row:this.gridArray){
             for (Cell el:row){
-                string+=(el.isAlive() ? "X" : "-");
+                string+=(el.isAlive() ? "X " : "- ");
             }
             string+="\n";
         }
