@@ -38,25 +38,24 @@ public class Spielstein{
         for (int counter=0;counter<n;counter++){
             if (this.brett.get(currentRow,currentCol).getBoese()) {
                 System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") ist böse!");
-            }else{
-                if (movesOut()){
-                    System.out.println("Der Stein verlässt das Spielfeld bei ("+this.currentRow+"|"+this.currentCol+")!");
-                }else {
-                    switch (this.brett.get(currentRow, currentCol).getDirection()) {
-                        case 'U':
-                            this.currentRow--;
-                            break;
-                        case 'D':
-                            this.currentRow++;
-                            break;
-                        case 'L':
-                            this.currentCol--;
-                            break;
-                        case 'R':
-                            this.currentCol++;
-                            break;
-                        default:
-                            System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") hat keine gültige Richtung!");
+            }else if (movesOut()){
+                System.out.println("Der Stein verlässt das Spielfeld bei ("+this.currentRow+"|"+this.currentCol+")!");
+            }else {
+                switch (this.brett.get(currentRow, currentCol).getDirection()) {
+                    case 'U':
+                        this.currentRow--;
+                        break;
+                    case 'D':
+                        this.currentRow++;
+                        break;
+                    case 'L':
+                        this.currentCol--;
+                        break;
+                    case 'R':
+                        this.currentCol++;
+                        break;
+                    default:
+                        System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") hat keine gültige Richtung!");
                     }
                 }
             }
