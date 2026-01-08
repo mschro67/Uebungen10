@@ -56,7 +56,6 @@ public class Spielstein{
                         break;
                     default:
                         System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") hat keine gültige Richtung!");
-                    }
                 }
             }
         }
