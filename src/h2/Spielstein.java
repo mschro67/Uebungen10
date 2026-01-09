@@ -16,18 +16,22 @@ public class Spielstein{
     private boolean movesOut(){
         int row=0;
         int col=0;
-        switch (brett.get(currentRow,currentCol).getDirection()){
-            case 'U':
-                row=-1;
-            case 'D':
-                row=1;
-            case 'L':
-                col=-1;
-            case 'R':
-                col=1;
-        }
         try{
-            char dir=brett.get(this.currentRow+row,this.currentCol+col).getDirection();
+            switch (brett.get(currentRow,currentCol).getDirection()) {
+                case 'U':
+                    row = -1;
+                    break;
+                case 'D':
+                    row = 1;
+                    break;
+                case 'L':
+                    col = -1;
+                    break;
+                case 'R':
+                    col = 1;
+                    break;
+            }
+            brett.get(currentRow+row,currentCol+col);
             return false;
         }catch (Exception e){
             return true;
@@ -36,11 +40,12 @@ public class Spielstein{
 
     public void go(int n){
         for (int counter=0;counter<n;counter++){
-            if (this.brett.get(currentRow,currentCol).getBoese()) {
+            if (movesOut()) {
+                System.out.println("Der Stein verlässt das Spielfeld bei ("+this.currentRow+"|"+this.currentCol+") ("+this.brett.get(this.currentRow,this.currentCol).getDirection()+")!");
+                break;
+            }else if (this.brett.get(this.currentRow,this.currentCol).getBoese()) {
                 System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") ist böse!");
-            }else if (movesOut()){
-                System.out.println("Der Stein verlässt das Spielfeld bei ("+this.currentRow+"|"+this.currentCol+")!");
-            }else {
+            }else{
                 switch (this.brett.get(currentRow, currentCol).getDirection()) {
                     case 'U':
                         this.currentRow--;
@@ -55,9 +60,13 @@ public class Spielstein{
                         this.currentCol++;
                         break;
                     default:
-                        System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") hat keine gültige Richtung!");
+                        System.out.println("Das Feld an ("+this.currentRow+"|"+this.currentCol+") hat keine gültige Richtung ("+this.brett.get(this.currentRow,this.currentCol).getDirection()+")!");
                 }
             }
         }
+    }
+
+    public void printPos(){
+        System.out.println("Der Stein ist bei ("+this.currentRow+"|"+this.currentCol+").");
     }
 }
